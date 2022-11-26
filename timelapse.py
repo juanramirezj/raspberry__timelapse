@@ -73,7 +73,7 @@ if args.onlyrender == 'n':
        nfotos = nfotos+1
        if nfotos % refresh == 0 or True:
          prstime = calcProcessTime(start, nfotos, numphotos)
-         stdout.write("\rphoto:%i of %i elapsed: %s, left: %s, ETA: %s" % prstime)
+         stdout.write("\r%i of %i run:%s, left:%s, ETA:%s" % prstime)
          stdout.flush()
 
    stdout.write("\n")
@@ -90,3 +90,5 @@ elif args.resolution =='3840x2160':
 
 #system('rm /home/pi/Pictures/*.jpg')
 print('Timelapse video is complete. Video saved as /home/pi/Videos/{}.mp4'.format(datetimeformat))
+print('-----------------------------------------------------------------------------')
+

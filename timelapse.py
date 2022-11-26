@@ -1,4 +1,6 @@
 #based on https://github.com/carolinedunn/timelapse.git
+#Juan Ramirez Jardua
+#November 2022
 
 from picamera import PiCamera
 from os import system

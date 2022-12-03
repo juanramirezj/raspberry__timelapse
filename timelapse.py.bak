@@ -59,6 +59,7 @@ elif args.resolution =='3840x2160':
   camera.resolution = (3840,2160)
 
 nfotos = 0
+refresh=int(numphotos/10)
 start = time.time()
 camera.annotate_text_size = 30
 camera.annotate_foreground = Color('black')
@@ -68,17 +69,15 @@ if args.onlyrender == 'n':
    system('rm /home/pi/Pictures/*.jpg') #delete all photos in the Pictures folder before timelapse start
    for i in range(numphotos):
        now = datetime.datetime.now()
-       this_start = time.time()
        camera.annotate_text = now.strftime("%d-%m-%Y %H:%M:%S")
        camera.capture('/home/pi/Pictures/image{0:06d}.jpg'.format(i))
+       time.sleep(secondsinterval)
        nfotos = nfotos+1
-       prstime = calcProcessTime(start, nfotos, numphotos)
-       stdout.write("\r%i of %i run:%s, left:%s, ETA:%s" % prstime)
-       stdout.flush()
-       this_end = time.time()
-       ts = secondsinterval - (this_end-this_start)
-       if ts > 0:
-            time.sleep(ts)
+       if nfotos % refresh == 0 or True:
+         prstime = calcProcessTime(start, nfotos, numphotos)
+         stdout.write("\r%i of %i run:%s, left:%s, ETA:%s" % prstime)
+         stdout.flush()
+
    stdout.write("\n")
    print("Done taking photos.")
  

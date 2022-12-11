@@ -30,7 +30,7 @@ parser= ArgumentParser(description='Timelapse program.')
 parser.add_argument('--fps','-f', dest='fps',help='frames per second timelapse video', default=30, type=int, metavar='fps')
 parser.add_argument('--tlminutes','-t',dest='tlminutes', help='number of minutes you wish to run your timelapse camera', default=3, type=int, metavar='minutes')
 parser.add_argument('--interval','-i',dest='secondsinterval',help='number of seconds delay between each photo taken',default=1, type=int,metavar='seconds')
-parser.add_argument('--resolution','-r',dest='resolution',help='resolution of video',default='1920x1080', type=str, metavar='pixels', choices=['1024x768', '1920x1080','3840x2160'])
+parser.add_argument('--resolution','-r',dest='resolution',help='resolution of video *1920x1080 1024x768 3840x2160',default='1920x1080', type=str, metavar='pixels', choices=['1024x768', '1920x1080','3840x2160'])
 parser.add_argument('--onlyrender',dest='onlyrender',help='Only render, no snapshots', type = str.lower, default='n',choices=['n','y'])
 args=parser.parse_args()
 print(args)
@@ -59,7 +59,6 @@ elif args.resolution =='3840x2160':
   camera.resolution = (3840,2160)
 
 nfotos = 0
-refresh=int(numphotos/10)
 start = time.time()
 camera.annotate_text_size = 30
 camera.annotate_foreground = Color('black')
@@ -69,15 +68,17 @@ if args.onlyrender == 'n':
    system('rm /home/pi/Pictures/*.jpg') #delete all photos in the Pictures folder before timelapse start
    for i in range(numphotos):
        now = datetime.datetime.now()
+       this_start = time.time()
        camera.annotate_text = now.strftime("%d-%m-%Y %H:%M:%S")
        camera.capture('/home/pi/Pictures/image{0:06d}.jpg'.format(i))
-       time.sleep(secondsinterval)
        nfotos = nfotos+1
-       if nfotos % refresh == 0 or True:
-         prstime = calcProcessTime(start, nfotos, numphotos)
-         stdout.write("\r%i of %i run:%s, left:%s, ETA:%s" % prstime)
-         stdout.flush()
-
+       prstime = calcProcessTime(start, nfotos, numphotos)
+       stdout.write("\r%i of %i run:%s, left:%s, ETA:%s" % prstime)
+       stdout.flush()
+       this_end = time.time()
+       ts = secondsinterval - (this_end-this_start)
+       if ts > 0:
+            time.sleep(ts)
    stdout.write("\n")
    print("Done taking photos.")
  

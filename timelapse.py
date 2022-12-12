@@ -69,6 +69,7 @@ camera.annotate_background = Color('white')
 
 if args.onlyrender == 'n':
    system('rm /home/pi/Pictures/*.jpg') #delete all photos in the Pictures folder before timelapse start
+   firsttime = True
    for i in range(numphotos):
        now = datetime.datetime.now()
        this_start = time.time()
@@ -76,7 +77,11 @@ if args.onlyrender == 'n':
        fn = '/home/pi/Pictures/image{0:06d}.jpg'.format(i)
        camera.capture( fn )
        if args.preview=='y' and nfotos%10 == 0:
-           image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-q", "-B", "black", "-g", "1280x800", fn])
+           if firsttime:
+               firsttime = False
+           else:
+               image.kill()
+           image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-q", "-B", "black", "-g", "1280x800","--scale-down", fn])
        nfotos = nfotos+1
        prstime = calcProcessTime(start, nfotos, numphotos)
        stdout.write("\r%i of %i run:%s, left:%s, ETA:%s" % prstime)
@@ -85,6 +90,8 @@ if args.onlyrender == 'n':
        ts = secondsinterval - (this_end-this_start)
        if ts > 0:
             time.sleep(ts)
+   if args.preview =='y':
+       image.kill()
    stdout.write("\n")
    print("Done taking photos.")
  

@@ -131,11 +131,11 @@ print(fn)
 
 
 if args.resolution == '1024x668':
-   cmd_ffmpeg = 'ffmpeg -r {} -f image2 -s 1024x768 -nostats -loglevel 0 -pattern_type glob -i {} -vcodec libx264 -crf 25  -pix_fmt yuv420p {}/{}.mp4'.format(fps, fn, folder_path, datetimeformat)
+   cmd_ffmpeg = 'ffmpeg -r {} -f image2 -s 1024x768 -nostats -loglevel 0 -pattern_type glob -i "{}" -vcodec libx264 -crf 25  -pix_fmt yuv420p {}/{}.mp4'.format(fps, fn, folder_path, datetimeformat)
 elif args.resolution == '1920x1080':
-   cmd_ffmpeg = 'ffmpeg -r {} -f image2 -s 1920x1080 -nostats -loglevel 0 -pattern_type glob -i {} -vcodec libx264 -crf 25  -pix_fmt yuv420p {}/{}.mp4'.format(fps, fn, folder_path, datetimeformat)
+   cmd_ffmpeg = 'ffmpeg -r {} -f image2 -s 1920x1080 -nostats -loglevel 0 -pattern_type glob -i "{}" -vcodec libx264 -crf 25  -pix_fmt yuv420p {}/{}.mp4'.format(fps, fn, folder_path, datetimeformat)
 elif args.resolution =='3840x2160':
-   cmd_ffmpeg = 'ffmpeg -r {} -f image2 -s 3840x2160 -nostats -loglevel 0 -pattern_type glob -i {} -vcodec libx264 -crf 25  -pix_fmt yuv420p {}/{}.mp4'.format(fps, fn, folder_path, datetimeformat)
+   cmd_ffmpeg = 'ffmpeg -r {} -f image2 -s 3840x2160 -nostats -loglevel 0 -pattern_type glob -i "{}" -vcodec libx264 -crf 25  -pix_fmt yuv420p {}/{}.mp4'.format(fps, fn, folder_path, datetimeformat)
 
 print ("Executing command "+cmd_ffmpeg)
 os.system(cmd_ffmpeg)

@@ -1,5 +1,5 @@
-#This is a timelapse program based on a raspberry pi (4 in my case) and a camera
-##It takes a series of photos and after it creates a timelapse video in mp4 format.
+# This is a timelapse program based on a raspberry pi (4 in my case) and a camera
+## It takes a series of photos and after it creates a timelapse video in mp4 format.
 
 To run:
 `python3 timelapsev2.py [options]`

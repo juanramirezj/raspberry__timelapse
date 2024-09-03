@@ -1,4 +1,4 @@
-# This is a timelapse program based on a raspberry pi (4 in my case) and a camera
+# This is a timelapse program based on a raspberry pi (model 4 in my case) and a pi camera
 ## It takes a series of photos and after it creates a timelapse video in mp4 format.
 
 To run:
@@ -9,6 +9,7 @@ You have several options for creating the timelapse
 + **-t or --tlminutes m**: captures photos during m minutes. Default: 3 minutes
 + **-i or --interval i**: takes a photo every i seconds. Default: 1 second 
 + **-r or --resolution 1920x1080 or 1024x768 or 3840x2160**. Sets the video resolution. Default: 1920x1080
+
 
 
 >The raspberry has the Raspberry Pi OS 64-bit, than includes picamera2 and ffmpeg installed as default. If you are using a different model, you might need to install both manually.

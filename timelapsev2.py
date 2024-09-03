@@ -6,16 +6,23 @@
 #1 Septiembre 2024
 #se modifica código para trabajar con Picamera2 reemplazando código de version Picamera 
 
-from picamera2 import Picamera2
+from picamera2 import Picamera2, MappedArray
 import os
 # from os import system
 import datetime 
 import time
 import subprocess
+import cv2
 
 from argparse import ArgumentParser
 from sys import stdout
+
 # from picamera2 import Color
+colour = (0, 255, 0)
+origin = (0, 30)
+font = cv2.FONT_HERSHEY_SIMPLEX
+scale = 1
+thickness = 2
 
 def createNewFolder(origin):
     now = datetime.datetime.now()
@@ -27,6 +34,10 @@ def createNewFolder(origin):
     
     return folder_path
 
+def apply_timestamp(request):
+    timestamp = time.strftime("%Y-%m-%d %X")
+    with MappedArray(request, "main") as m:
+        cv2.putText(m.array, timestamp, origin, font, scale, colour, thickness)
 
 def calcProcessTime(starttime, cur_iter, max_iter):
 
@@ -68,6 +79,7 @@ datetimeformat = dateraw.strftime("%Y-%m-%d_%H%M")
 print("RPi started taking photos for your timelapse at: " + datetimeformat)
 
 camera = Picamera2()
+camera.pre_callback = apply_timestamp
 
 if args.resolution == '1024x768':
    camera_config = camera.create_still_configuration(main={"size": (1024, 768)}, lores={"size": (640, 480)}, display="lores")

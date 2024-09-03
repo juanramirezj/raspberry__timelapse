@@ -21,5 +21,6 @@ Raspberry Pi 4 4Gb Ram, Raspberry Pi OS 64 bits
 
 
 >The raspberry has the Raspberry Pi OS 64-bit, than includes picamera2 and ffmpeg installed as default. If you are using a different model, you might need to install both manually.
+>The programs requires opencv. You can create a virtual environment with `python3 -m venv --system-site-packages my-venv`, activate with `source my-venv/bin/activate` and install with `pip install opencv-python`
 
 

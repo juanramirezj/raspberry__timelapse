@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Raspberry Pi Xmas Tree</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+</head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Raspberry Pi Christmas Tree</h1>
+        <h2 class="status">The tree is {{state}}</h2>
+        <strong><nav>
+        <a href="/" class="button">Home</a>  
+        <br/>
+        <br/>
+        <ul class="menu">
+        <form action="/setState/FLICKER" method="post">
+            <button name="flicker" type="submit">Flicker Lights</button>
+        </form>
+        <br/>
+        <form action="/setState/RANDOM_ON_OFF" method="post">
+            <button name="randomOnOff" type="submit">Random Lights</button>
+        </form>
+        <br/>
+        <form action="/setState/ALL_FLASH" method="post">
+            <button name="allFlash" type="submit">Flash All Lights</button>
+        </form>
+        <br/>
+        <form action="/setState/UP_AND_DOWN" method="post">
+            <button name="upAndDown" type="submit">Up and Down</button>
+        </form>
+        <br/>
+        <form action="/setState/OFF" method="post">
+            <button name="reset" type="submit">Reset</button>
+        </form>
+        <br/>
+        <form action="/setState/TERMINATE" method="post">
+            <button name="off" type="submit">Shut down server</button>
+        </form>
+        </ul>
+        </nav></strong>
+      </div>
+    </header>
+    
+{% block content %}
+{% endblock %}
+
+ </body>
+</html>

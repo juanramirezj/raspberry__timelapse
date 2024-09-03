@@ -10,6 +10,9 @@ You have several options for creating the timelapse
 + **-i or --interval i**: takes a photo every i seconds. Default: 1 second 
 + **-r or --resolution 1920x1080 or 1024x768 or 3840x2160**. Sets the video resolution. Default: 1920x1080
 
+Example of the video generated with the program
+![Example](https://github.com/juanramirezj/raspberry_timelapse/blob/master/images/example.gif)
+
 Camera used for my setup: Raspberry PiHQ Camera Module with Arducam 8-50mm C-Mount Zoom Lens
 ![Camera used for my setup: Raspberry PiHQ Camera Module with Arducam 8-50mm C-Mount Zoom Lens](https://github.com/juanramirezj/raspberry_timelapse/blob/master/images/camera.jpg)
 
